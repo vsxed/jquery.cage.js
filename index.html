@@ -5,25 +5,16 @@
 	<title>Cage it</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="js/jquery.cageit.js"></script>
-	<style>
-	.rage {
-		height: 600px;
-		width: 400px;
-		background-color: yellow;
-	}
-		</style>
+	
 </head>
 <body>
-	<div class="rage">
-		
-	</div>
     <script>
 		$(document).ready(function () {
 	        $('body').cage({
-	        	element: '.rage',
+	        	element: 'body',
 	        	type: 'crazy',
 	        	auto: true,
-				refresh: 6000
+				refresh: 3000
 	        });
 	    });
 	</script>
