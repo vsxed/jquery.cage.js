@@ -1,22 +1,143 @@
 <!doctype html>
-<html>
+<html lang="de">
 <head>
 	<meta charset="UTF-8">
-	<title>Cage it</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="js/jquery.cageit.js"></script>
-	
+	<title>Cage Plugin - jquery.cage.js</title>
+	<link href="documentation/main.css" rel="stylesheet">
+
 </head>
-<body>
+<body data-spy="scroll" data-target="#nav" data-offset="18">
+    <nav id="nav">
+        <ul class="nav-wrapper">
+            <li class="nav-link"><a class="smoothie" href="#one">Introduction</a></li>
+            <li class="nav-link"><a class="smoothie" href="#two">Code</a></li>
+            <li class="nav-link"><a class="smoothie" href="#three">Download</a></li>
+        </ul>
+    </nav>
+		<section class="photo bar single" id="one">
+			<h1 class="start"><span>Documentation</span><br>jquery.cage.js</h1>
+		</section>
+
+		<section class="white bar">
+	<section class="inner">
+    	<p>This is a jQuery Plugin created to "cage" a website.<br>Everybody loves <a href="http://www.imdb.com/name/nm0000115/?ref_=fn_al_nm_1">Nicolas Cage</a><br><br>This plugin requires <a href="http://code.jquery.com/">jQuery</a> to work.</p>
+    	<h3>What's "caging"?</h3>
+    	<blockquote class="twitter-tweet" lang="de"><p>"Caging" -when people put pictures of Nicolas Cage all over someone's stuff/room as a prank. Probs not to me though, I'd enjoy it too much.</p>&mdash; Lindsey (@PirateLindsey) <a href="https://twitter.com/PirateLindsey/status/313481010362855426">18. März 2013</a></blockquote>
+<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    	
+    	<h3>What does this plugin do?</h3>
+    	<p>This plugin replaces any elements background with some random-sized pictures of Nicolas Cage.<br>
+    		You can specify which element will be caged.</p>
+
+    		<h3 id="two">How to use it?</h3>
+
+    		<p>You can use it by simply calling this code in your html/js</p>
+    		<pre>$('<span class="target">body</span>').cage();</pre>
+    		<p>Your <span class="target">target</span> can be <strong>any</strong> DOM element. Choose wisely.</p>
+
+    		<p><br>See example markups in the <a class="smoothie" href="#three">archive</a> or on <a href="#">Github</a>.</p>
+
+    		<h3>Options</h3>
+			<p>There also some options you can set.<br>The default settings are:</p>
+			<pre>type: 'calm',<br>auto: false,<br>refresh: 1500</pre>
+
+			<p><strong class="blue">type</strong><br>
+				You can choose the <em>type</em> of image which will be set.<br>Here are the values you can set:</p>
+
+				<table border="0" bordercolor="FFCC00" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>Value</td>
+						<td>Description</td>
+
+					</tr>
+					<tr>
+						<td>calm</td>
+						<td>Default value, will return calm portraits of Mr. Cage<br></td>
+					</tr>
+					<tr>
+						<td>crazy</td>
+						<td>CRAZY pictures! You will recognize some, just like the "You don't say" picture<br></td>
+					</tr>
+					<tr>
+						<td>grey</td>
+						<td>Some greyscaled pictures. Less disturbing background than the other ones<br></td>
+					</tr>
+				</table>
+
+
+			<p><strong class="blue">auto</strong><br>
+				With <em>auto</em> you can turn on automatic reloading of the background picture</p>
+
+				<table border="0" bordercolor="FFCC00" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>Value</td>
+						<td>Description</td>
+
+					</tr>
+					<tr>
+						<td>true</td>
+						<td>Pictures will be reloaded automatically<br></td>
+					</tr>
+					<tr>
+						<td>false</td>
+						<td>Static picture. Will only reload by reloading the page<br></td>
+					</tr>
+				</table>
+
+			<p><strong class="blue">refresh</strong><br>
+				<em>refresh</em> sets the time to refresh the images - in <strong>milliseconds</strong>. <br>It will be only used, if <em>auto</em> is set to <em>true</em></p>
+
+				<table border="0" bordercolor="FFCC00" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>Value</td>
+						<td>Description</td>
+
+					</tr>
+					<tr>
+						<td>3000</td>
+						<td>Default value (3 seconds)<br></td>
+					</tr>
+					<tr>
+						<td>any value</td>
+						<td>Use any time in milliseconds</td>
+					</tr>
+				</table>
+
+
+
+				<h3 id="three">Download</h3>
+
+				<div class="download"><a href="#" class="button dl"><i class="icon-download-alt"></i>Download .zip</a><a href="#" class="button gh"><i class="icon-github-alt"></i>Fork it on Github</a></div>
+				<p>This Plugin is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a><br>Code by <a href="http://www.twitter.com/vsxed">Eduard Mayer</a></p>
+
+				<p><br>Be Social! Share it!<br></p>
+				<div class="social">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="vsxed">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</div>
+				<div class="social">
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<g:plusone></g:plusone>				</div>
+        <br class="clear">
+    </section>
+</section>
+    
+</section>
+	<!-- JS LASTLOAD -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script async src="documentation/js/bootstrap.js"></script>
+    <script async src="documentation/js/eduard.js"></script>
+    <script src="js/jquery.cageit.js"></script>
     <script>
 		$(document).ready(function () {
-	        $('body').cage({
-	        	element: 'body',
-	        	type: 'crazy',
-	        	auto: true,
-				refresh: 3000
+	        $('#one').cage({
+	        	type: 'grey'
 	        });
 	    });
 	</script>
+
+
+    
+
 </body>
 </html>

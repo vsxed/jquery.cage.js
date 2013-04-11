@@ -1,0 +1,379 @@
+// jquery.cage.js
+//
+// 2013
+// Eduard Mayer
+
+// ----------
+// ----------
+// ----------
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import "font-awesome.less";
+
+// ---------------------------------------
+// ------------  V A R I A B L E N  -----------
+// ---------------------------------------
+
+@light: #f3f3f3;
+@dark: #111;
+@shadow: rgba(0,0,0,.1);
+@shadow-2: rgba(0,0,0,.5);
+@head-blue: #308ED0; 
+@light-grey: #D5D5D5;
+@blue: rgb(132, 91, 151);
+@white-dash: fade(white, 80%);
+@nav-highlight: rgb(132, 91, 151);
+@light-nav-highlight: lighten(@nav-highlight, 45%);
+
+// --- iPhone (5) landscape & portrait ---
+@iphone5: ~"only screen and (max-width: 568px)";
+
+// Inset-Effekt für Text.
+// Variablen müssen mitgegeben werden,  
+// z.B. .text-inset(1px, 0.5)
+//
+.text-inset (@loc-horiz: 1px, @trans: 1) {
+  text-shadow: 0 @loc-horiz 0 rgba(255,255,255,1);
+}
+
+// Text-Shadow
+// Normaler text-shadow-Syntax, zweiter Schatten per default unsichtbar
+//
+.text-shadow (@text-shadow1, @text-shadow2: transparent 0 0 0 ) {
+  text-shadow: @text-shadow1, @text-shadow2;
+}
+
+// Box-Shadow Mixin
+// Normaler box-shadow-Syntax, 2. + 3. Schatten per default unsichtbar
+.box-shadow (@box-shadow1, @box-shadow2: transparent 0 0 0, @box-shadow3: transparent 0 0 0 ) {
+  -webkit-box-shadow: @box-shadow1, @box-shadow2, @box-shadow3;
+     -moz-box-shadow: @box-shadow1, @box-shadow2, @box-shadow3;
+          box-shadow: @box-shadow1, @box-shadow2, @box-shadow3;
+}
+
+// Transition-Mixin
+// Variablen müssen mitgegeben werden! "all" ist per default eingestellt.
+// "translate3d" damit Safari auf iOS-Geräten in die Pötten kommt und die GPU aktiviert!
+// 
+.transition (@trans-time, @trans-grad:ease-in-out) {
+  -webkit-transform: translate3d(0,0,0);
+          transform: translate3d(0,0,0);
+  -webkit-transition: all @trans-time @trans-grad;  
+     -moz-transition: all @trans-time @trans-grad;
+      -ms-transition: all @trans-time @trans-grad;
+       -o-transition: all @trans-time @trans-grad;
+          transition: all @trans-time @trans-grad;
+}
+
+.fontface (@fontname) {
+  font-family: '@{fontname}';
+  src:url('@{font}/@{fontname}');
+  src:url('@{font}/@{fontname}.eot?#iefix') format('embedded-opentype'),
+      url('@{font}/@{fontname}.woff') format('woff'),
+      url('@{font}/@{fontname}.ttf') format('truetype');
+  font-weight: normal;
+  font-style:  normal;
+}
+
+// ---------------------------------------
+// -------- L E S S   T O   C O M P I L E  -------
+// ---------------------------------------
+
+/*************************/
+/**** Allgemeines CSS ****/
+/*************************/
+@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+
+// Backgrounds 
+
+* {
+	margin:0;
+	padding:0;
+	text-decoration:none;
+	border:0;
+	font-family: "Open Sans", Arial, sans-serif;
+}
+
+.clear {
+	clear: left;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+img {
+	border: none;
+}
+
+body, html {
+	width: 100%;
+	-webkit-font-smoothing: antialiased;
+	font-size: 16px;
+}
+
+pre {
+	background: @light;
+	padding: 14px 28px;
+	margin-bottom: 20px;
+}
+
+.target {
+		border-bottom: 2px dashed red;
+	}
+
+nav {
+	z-index: 999999999;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 80px;
+	background: white;
+	
+	margin: 0 auto;
+
+	.nav-wrapper {
+		max-width: 800px;
+		// DEBUGGING
+		// border-right: 1px solid red;
+		// border-left: 1px solid red;
+		// ENDE DEBUGGING
+		margin: 13px auto;
+		text-align: center;
+		list-style: none;
+
+		.nav-link {
+			margin-right: 5px;
+			height: 18px;
+			display: inline-block;
+			top: 0;
+			padding: 18px 20px;
+			color: lighten(@dark, 40%);
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			// text-transform: uppercase;
+			// DEBUGGING
+			background: transparent;
+			// ENDE DEBUGGING
+			font-size: 16px;
+			font-weight: 200;
+			background: transparent;
+			.transition(0.3s);
+			border-radius: 3px;
+
+			// border-bottom: 2px solid @nav-highlight;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+
+			&:hover {
+				color: @head-blue;
+				background: white;
+				box-shadow: 0 1px 5px 0 @shadow, inset 0 0 0 1px @shadow;
+				// background-color: fade(@nav-highlight, 60%);
+				text-shadow: 0 0 4px @light-nav-highlight;
+			}
+		}
+	}
+}
+
+.wrapper {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	overflow: auto;
+}
+
+.bar {
+	position: relative;
+	width: 100%;
+
+	h1 {
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-transform: uppercase;
+		font-weight: 200;
+		display: block;
+		font-size: 2.4em;
+		position: absolute;
+		top: 190px;
+		width: 100%;
+		line-height: 1.6em;
+		color: #fff;
+		text-align: center;
+		text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+
+		span {
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-weight: 700;
+			border-radius: 3px;
+			padding: 8px 20px;
+			background-color: fade(white, 60%);
+			box-shadow: 0 0 20px 0 @shadow;
+			text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+		}
+
+		&.contact-text {
+			top: 140px;
+		}
+	}
+}
+
+.logo {
+	width: 100%;
+	height: auto;
+	max-width: 193px;
+	max-height: 213px;
+	margin: 0 auto;
+	display: block;
+	top: 150px;
+	position: relative;
+}
+
+.single {
+height: 450px;
+
+}
+
+em {
+	padding: 4px 8px;
+	background-color: @light;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.white {
+	min-height: 300px;
+	background-color: #fff;
+	-webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+	z-index: 800;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-size: 15px;
+	line-height: 25px;
+	color: #7E756B;
+
+	.inner {
+		padding: 55px 20px;
+		max-width: 800px;
+		display:block;
+		margin: 0 auto;
+
+		p {
+			font-size: 1.2em;
+			line-height: 1.8em;
+
+			a {
+				color: @head-blue;
+			}
+		}
+	}
+}
+.social {
+	margin: 20px 0;
+}
+table {
+
+margin: 30px 0 80px;
+
+	tr{
+		td:first-child{
+			width:100px;
+			vertical-align: top;
+			color: lighten(@head-blue, 20%);
+			font-weight:600;
+		}
+
+		&:hover{
+			background: @light;
+		}
+
+		&:first-child{
+			font-weight: 700;
+
+			td:first-child{
+				color: inherit;
+				font-weight: 700;
+			}
+			&:hover {
+			background: white;
+		}
+		}
+
+		
+
+		margin-bottom: 15px;
+	}
+}
+
+
+.blue {
+	color: @head-blue;
+}
+
+.button {
+	padding: 20px 40px;
+	display:inline-block;
+	margin-right: 20px;
+	border-radius: 4px;
+	color: white;
+	font-weight: 700;
+
+	@media @iphone5 {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	&.dl {
+		background: @head-blue;
+		text-align: center;
+
+		&:hover,
+		&:active {
+			background: darken(@head-blue,25%);
+			text-shadow: 0 0 15px @head-blue;
+		}
+	}
+
+	&.gh {
+		background: darken(@light-grey, 25%);
+		text-align: center;
+
+		&:hover,
+		&:active {
+			background: darken(@light-grey,45%);
+			text-shadow: 0 0 15px @light-grey;
+		}
+	}
+}
+
+.download {
+	margin: 25px 0;
+}
+i {
+	margin-right: 10px;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: @head-blue;
+  font-weight: 700px;
+	margin-bottom: 20px;
+	padding-top:120px;
+  }
+.collapse {
+  position: relative;
+  height: 0;
+  display: block;
+  overflow: hidden;
+  .transition(0.35s);
+
+  &.in {
+  	height: auto;
+  	.transition(0.35s);
+  }
+}
