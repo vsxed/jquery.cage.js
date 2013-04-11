@@ -1,5 +1,5 @@
-$(function(){
-    $.fn.cage = function(options) {
+$(function () {
+    $.fn.cage = function (options) {
 
             var settings = {
                 element: 'body',
@@ -10,11 +10,11 @@ $(function(){
 
             if (options) $.extend(settings, options);
 
-            if (settings.type == 'calm'){
+            if (settings.type === 'calm') {
                 var baseURL = 'http://www.placecage.com/';
-            } else if (settings.type == 'gray') {
+            } else if (settings.type === 'gray') {
                 var baseURL = 'http://www.placecage.com/g/';
-            } else if (settings.type == 'crazy') {
+            } else if (settings.type === 'crazy') {
                 var baseURL = 'http://www.placecage.com/c/';
             }
 
@@ -22,16 +22,16 @@ $(function(){
                 var randomNumber = Math.floor(Math.random() * 626) + 75;
                 var url = baseURL + randomNumber + '/' + randomNumber;
 
-                $(settings.element).css( "background", "url(" + url +") 0 0 repeat" );
+                $(settings.element).css("background", "url(" + url + ") 0 0 repeat");
             }
 
-            if (settings.auto == true) {
+            if (settings.auto === true) {
                 getCage();
-                setInterval(function(){
+                setInterval(function () {
                     getCage();
-                },settings.refresh);
+                }, settings.refresh);
             } else {
                 getCage();
             }
-    };
+        };
 });
