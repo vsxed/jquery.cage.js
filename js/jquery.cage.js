@@ -2,7 +2,7 @@
  * jQuery Cage Plugin
  * jquery.cage.js
  * Copyright (c) 2013 Eduard Mayer
- * Version 0.8
+ * Version 0.9
  * Licensed MIT (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -27,17 +27,23 @@ $(function () {
                 var baseURL = 'http://www.placecage.com/c/';
             }
 
-            function getCage() {
-                var randomNumber = Math.floor(Math.random() * 626) + 75;
-                var url = baseURL + randomNumber + '/' + randomNumber;
+            /* Refresh the refresh value if theres set any. Otherwise use a 3000ms as a base */
+            var fadetime = settings.refresh * 0.3;
 
-                $(element).css("background", "url(" + url + ") 0 0 repeat");
+            function getCage() {
+            	var randomNumber = Math.floor(Math.random() * 626) + 75,
+                url = baseURL + randomNumber + '/' + randomNumber;
+    			$(element).css("opacity", "0");
+                $(element).css("background", "url(" + url + ") 0 0 repeat").fadeTo(fadetime, 1.0);
             }
 
             if (settings.auto === true) {
-                getCage();
+            	getCage();
                 setInterval(function () {
-                    getCage();
+                    $(element).fadeOut(fadetime, function(){
+                    	getCage();
+                    	$(this).fadeIn(fadetime);
+                    });
                 }, settings.refresh);
             } else {
                 getCage();
